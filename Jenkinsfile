@@ -1,44 +1,54 @@
 pipeline {
     agent any
 
-    environment {
-        DIRECTORY_PATH = "/path/to/code"
-        TESTING_ENVIRONMENT = "Test environment"
-        PRODUCTION_ENVIRONMENT = "Richard Whellum"
-    }
     stages {
-        stage("Build") {
+        stage('Build') {
             steps {
-                echo "Fetch the source code from the directory path: $DIRECTORY_PATH"
-                echo "Compile the code and generate any necessary artifacts"
+                echo 'Use a build automation tool Maven to compile and package code.'
             }
         }
-        stage("Test") {
+        stage('Unit and Integration Tests') {
             steps {
-                echo "Unit tests"
-                echo "Integration tests"
+                echo 'Run unit tests and integration test using Selenium'
+            }            
+            post {
+                always {
+                    mail to: 'rwhellum@deakin.edu.au',
+                    subject: 'Test Stage Successful',
+                    body: 'The test stage has completed successfully. Please check the logs for details.'
+                }
             }
         }
-        stage("Code Quality Check") {
-            steps
-            {
-                echo "Check the quality of the code"
+        stage('Code Analysis') {
+            steps {
+                echo 'Analyse code using SonarQube'
             }
         }
-        stage("Deploy") {
+        stage('Security Scan') {
             steps {
-                echo "Deploy the application to a testing environment: $TESTING_ENVIRONMENT"
+                echo 'Perform a security scan using OWASP ZAP'
+            }            
+            post {
+                always {
+                    mail to: 'rwhellum@deakin.edu.au',
+                    subject: 'Test Stage Successful',
+                    body: 'The test stage has completed successfully. Please check the logs for details.'
+                }
             }
         }
-        stage("Approval") {
+        stage('Deploy to Staging') {
             steps {
-                echo "Waiting for manual approval..."
-                sleep 10
+                echo 'Deploy application to staging server AWS EC2'
             }
         }
-        stage("Deploy to Production") {
+        stage('Integration Tests on Staging') {
             steps {
-                echo "Deploying the code to production environment: $PRODUCTION_ENVIRONMENT"
+                echo 'Run integration tests on the staging environment using Selenium'
+            }
+        }
+        stage('Deploy to Production') {
+            steps {
+                echo 'Deploy application to production server AWS EC2'
             }
         }
     }
