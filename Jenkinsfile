@@ -31,8 +31,8 @@ pipeline {
             post {
                 always {
                     mail to: 'rwhellum@deakin.edu.au',
-                    subject: 'Test Stage Successful',
-                    body: 'The test stage has completed successfully. Please check the logs for details.'
+                    subject: 'Security Scan Stage Successful',
+                    body: 'The security scan stage has completed successfully. Please check the logs for details.'
                 }
             }
         }
