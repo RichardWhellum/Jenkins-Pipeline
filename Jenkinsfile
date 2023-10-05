@@ -13,22 +13,16 @@ pipeline {
             }
             post {
                 success {
-                    echo 'Unit and Integration Tests succeeded.'
-                    emailext(
-                        subject: 'Unit and Integration Tests Successful',
-                        body: 'The unit and integration tests stage has completed successfully. Please check the logs for details.',
-                        to: 'richisbox@gmail.com',
-                        attachLog: true  // Attach build log to the email
-                    )
+                    mail to: 'richisbox@gmail.com',
+                    subject: 'Unit and Integration Tests Successful',
+                    body: 'The unit and integration tests stage has completed successfully. Please check the logs for details.',
+                    attachLog: true
                 }
                 failure {
-                    echo 'Unit and Integration Tests failed.'
-                    emailext(
-                        subject: 'Unit and Integration Tests Failed',
-                        body: 'The unit and integration tests stage has failed. Please check the logs for details.',
-                        to: 'richisbox@gmail.com',
-                        attachLog: true  // Attach build log to the email
-                    )
+                    mail to: 'richisbox@gmail.com',
+                    subject: 'Unit and Integration Tests Successful',
+                    body: 'The unit and integration tests stage has completed successfully. Please check the logs for details.',
+                    attachLog: true
                 }
             }
         }
@@ -43,22 +37,16 @@ pipeline {
             }
             post {
                 success {
-                    echo 'Security Scan succeeded.'
-                    emailext(
-                        subject: 'Security Scan Successful',
-                        body: 'The security scan stage has completed successfully. Please check the logs for details.',
-                        to: 'richisbox@gmail.com',
-                        attachLog: true  // Attach build log to the email
-                    )
+                    mail to: 'richisbox@gmail.com',
+                    subject: 'Security Scan Successful',
+                    body: 'The security scan stage has completed successfully. Please check the logs for details.',
+                    attachLog: true
                 }
                 failure {
-                    echo 'Security Scan failed.'
-                    emailext(
-                        subject: 'Security Scan Failed',
-                        body: 'The security scan stage has failed. Please check the logs for details.',
-                        to: 'richisbox@gmail.com',
-                        attachLog: true  // Attach build log to the email
-                    )
+                    mail to: 'richisbox@gmail.com',
+                    subject: 'Security Scan Failed',
+                    body: 'The security scan stage has failed. Please check the logs for details.',
+                    attachLog: true
                 }
             }
         }
