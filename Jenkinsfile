@@ -17,8 +17,7 @@ pipeline {
                         emailext(                    
                             to: 'richisbox@gmail.com',
                             subject: 'Unit and Integration Tests Successful',
-                            body: 'The unit and integration tests stage has completed successfully. Please check the logs for details.',
-                            attachLog: true
+                            body: 'The unit and integration tests stage has completed successfully. Please check the logs for details.'
                         )
                     }
                 }
