@@ -30,6 +30,7 @@ pipeline {
                             body: 'The unit and integration tests stage has failed. Please check the logs for details.',
                             attachLog: true
                         )
+                    }
                 }
             }
         }
