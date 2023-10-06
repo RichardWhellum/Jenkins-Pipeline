@@ -11,20 +11,25 @@ pipeline {
             steps {
                 echo 'Run unit tests and integration tests using Selenium.'
             }
-            post {
+            post {                
                 success {
-                    archiveArtifacts artifacts: '**/build.log', allowEmptyArchive: true
-                    mail to: 'richisbox@gmail.com',
-                    subject: 'Unit and Integration Tests Successful',
-                    body: 'The unit and integration tests stage has completed successfully. Please check the logs for details.',
-                    attachmentsPattern: '**/build.log'
+                    script {
+                        emailext(                    
+                            to: 'richisbox@gmail.com',
+                            subject: 'Unit and Integration Tests Successful',
+                            body: 'The unit and integration tests stage has completed successfully. Please check the logs for details.',
+                            attachLog: true
+                        )
+                    }
                 }
                 failure {
-                    archiveArtifacts artifacts: '**/build.log', allowEmptyArchive: true
-                    mail to: 'richisbox@gmail.com',
-                    subject: 'Unit and Integration Tests Failed',
-                    body: 'The unit and integration tests stage has failed. Please check the logs for details.',
-                    attachmentsPattern: '**/build.log'
+                    script {
+                        emailext(                    
+                            to: 'richisbox@gmail.com',
+                            subject: 'Unit and Integration Tests Failed',
+                            body: 'The unit and integration tests stage has failed. Please check the logs for details.',
+                            attachLog: true
+                        )
                 }
             }
         }
@@ -39,18 +44,24 @@ pipeline {
             }
             post {
                 success {
-                    archiveArtifacts artifacts: '**/build.log', allowEmptyArchive: true
-                    mail to: 'richisbox@gmail.com',
-                    subject: 'Security Scan Successful',
-                    body: 'The security scan stage has completed successfully. Please check the logs for details.',
-                    attachmentsPattern: '**/build.log'
+                    script {
+                        emailext(
+                            to: 'richisbox@gmail.com',
+                            subject: 'Security Scan Successful',
+                            body: 'The security scan stage has completed successfully. Please check the logs for details.',
+                            attachLog: true
+                        )
+                    }
                 }
                 failure {
-                    archiveArtifacts artifacts: '**/build.log', allowEmptyArchive: true
-                    mail to: 'richisbox@gmail.com',
-                    subject: 'Security Scan Failed',
-                    body: 'The security scan stage has failed. Please check the logs for details.',
-                    attachmentsPattern: '**/build.log'
+                    script {
+                        emailext(
+                            to: 'richisbox@gmail.com',
+                            subject: 'Security Scan Failed',
+                            body: 'The security scan stage has failed. Please check the logs for details.',
+                            attachLog: true
+                        )
+                    }
                 }
             }
         }
