@@ -1,4 +1,4 @@
-pipeline {
+ipeline {
     agent any
 
     stages {
@@ -11,26 +11,22 @@ pipeline {
             steps {
                 echo 'Run unit tests and integration tests using Selenium.'
             }
-            post {                
+            post {
                 success {
-                    script {
-                        emailext(                    
-                            to: 'richisbox@gmail.com',
-                            subject: 'Unit and Integration Tests Successful',
-                            body: 'The unit and integration tests stage has completed successfully. Please check the logs for details.',
-                            attachLog: true
-                        )
-                    }
+                    emailext(
+                        to: 'richisbox@gmail.com',
+                        subject: 'Unit and Integration Tests Successful',
+                        body: 'Unit and integration tests stage has completed successfully.',
+                        attachLog: true
+                    )
                 }
                 failure {
-                    script {
-                        emailext(                    
-                            to: 'richisbox@gmail.com',
-                            subject: 'Unit and Integration Tests Failed',
-                            body: 'The unit and integration tests stage has failed. Please check the logs for details.',
-                            attachLog: true
-                        )
-                    }
+                    emailext(
+                        to: 'richisbox@gmail.com',
+                        subject: 'Unit and Integration Tests Failed',
+                        body: 'Unit and integration tests stage has failed.',
+                        attachLog: true
+                    )
                 }
             }
         }
@@ -45,24 +41,20 @@ pipeline {
             }
             post {
                 success {
-                    script {
-                        emailext(
-                            to: 'richisbox@gmail.com',
-                            subject: 'Security Scan Successful',
-                            body: 'The security scan stage has completed successfully. Please check the logs for details.',
-                            attachLog: true
-                        )
-                    }
+                    emailext(
+                        to: 'richisbox@gmail.com',
+                        subject: 'Security Scan Successful',
+                        body: 'Security scan stage has completed successfully.',
+                        attachLog: true
+                    )
                 }
                 failure {
-                    script {
-                        emailext(
-                            to: 'richisbox@gmail.com',
-                            subject: 'Security Scan Failed',
-                            body: 'The security scan stage has failed. Please check the logs for details.',
-                            attachLog: true
-                        )
-                    }
+                    emailext(
+                        to: 'richisbox@gmail.com',
+                        subject: 'Security Scan Failed',
+                        body: 'Security scan stage has failed.',
+                        attachLog: true
+                    )
                 }
             }
         }
